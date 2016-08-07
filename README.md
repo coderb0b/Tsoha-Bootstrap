@@ -11,7 +11,7 @@ Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkitten
 
 ## Toteutetut sivut
 
-* [Linkki sovellukseeni](https://jssilvo.users.cs.helsinki.fi/tsoha/main)
-* [Linkki sovellukseeni](https://jssilvo.users.cs.helsinki.fi/tsoha/login)
-* [Linkki sovellukseeni](https://jssilvo.users.cs.helsinki.fi/tsoha/drink)
-* [Linkki sovellukseeni](https://jssilvo.users.cs.helsinki.fi/tsoha/drink/1)
+* [Main](https://jssilvo.users.cs.helsinki.fi/tsoha/main)
+* [Login](https://jssilvo.users.cs.helsinki.fi/tsoha/login)
+* [Listaus](https://jssilvo.users.cs.helsinki.fi/tsoha/drink)
+* [Esittelysivu](https://jssilvo.users.cs.helsinki.fi/tsoha/drink/1)
