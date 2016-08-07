@@ -1,1 +1,3 @@
 -- Lisää DROP TABLE lauseet tähän tiedostoon
+DROP TABLE IF EXISTS Recipe CASCADE;
+DROP TABLE IF EXISTS Client CASCADE;
