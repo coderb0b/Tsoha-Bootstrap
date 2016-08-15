@@ -1,5 +1,6 @@
 <?php
 
+
 class HelloWorldController extends BaseController {
 
     public static function index() {
@@ -11,7 +12,11 @@ class HelloWorldController extends BaseController {
     public static function sandbox() {
         // Testaa koodiasi täällä
         //echo 'Hello World!';
-        View::make('helloworld.html');
+        //View::make('helloworld.html');
+        $clients = Client::all();
+        Kint::dump($clients);
+        $recipes = Recipe::all();
+        Kint::dump($recipes);
     }
 
     public static function drinks_main() {
@@ -23,11 +28,9 @@ class HelloWorldController extends BaseController {
     }
 
     public static function drinks_list() {
-        View::make('suunnitelmat/drink.html');
+        View::make('recipe/drink.html');
     }
     
-    public static function drinks_show() {
-        View::make('suunnitelmat/drink_show.html');
-    }
+    
 
 }

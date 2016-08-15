@@ -17,9 +17,10 @@ $routes->get('/login', function() {
 });
 
 $routes->get('/drink', function() {
-    HelloWorldController::drinks_list();
+    //HelloWorldController::drinks_list();
+    recipe_controller::index();
 });
 
-$routes->get('/drink/1', function() {
-    HelloWorldController::drinks_show();
+$routes->get('/drink/:id', function($id) {
+    recipe_controller::drinks_show($id);
 });
