@@ -46,5 +46,18 @@ class Recipe extends BaseModel {
         }
         return null;
     }
+    
+    //Tallennetaan olio tietokantaan
+    public function save() {
+        // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
+        
+        $query = DB::connection()->prepare('INSERT INTO Recipe (name, description, instructions, added) VALUES (:name, :description, :instructions, NOW()) RETURNING id');
+        $query->execute(array('name' => $this->name, 'description' => $this->description, 'instructions' => $this->instructions));
+        
+        //haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
+        $row = $query->fetch();
+        //asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
+        $this->id = $row['id'];
+    }
 
 }

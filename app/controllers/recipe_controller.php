@@ -11,4 +11,22 @@ class recipe_controller extends BaseController {
         //renderöidään drink_show.html muuttujalla $recipe
         View::make('recipe/drink_show.html', array('recipe' => $recipe));
     }
+    
+    public static function create() {        
+        View::make('recipe/new.html');
+    }
+    
+    public static function store() {
+        $params = $_POST; //POST-pyynnön muuttujat
+        
+        $recipe = new Recipe(array(
+           'name'  => $params['name'],
+            'description' => $params['description'],
+            'instructions' => $params['instructions']
+        ));
+        
+        $recipe->save();
+        
+        Redirect::to('/drink/' . $recipe->id, array('message' => 'Lisäys ok :)'));
+    }
 }
