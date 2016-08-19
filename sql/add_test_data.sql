@@ -7,3 +7,9 @@
 INSERT INTO Recipe (name, description, instructions, added) VALUES ('G&T', 'Ginipohjainen', 'sekoita', NOW());
 INSERT INTO Recipe (name, description, instructions, added) VALUES ('Mojito', 'Rommipohjainen', 'ravista', NOW());
 
+--Ingredient:
+INSERT INTO Ingredient (name) VALUES ('gin');
+
+--Recipe_ingredient:
+INSERT into recipe_ingredient VALUES (1,1);
+

@@ -20,7 +20,6 @@ class Recipe extends BaseModel {
                 'id' => $row['id'],
                 'name' => $row['name'],
                 'description' => $row['description'],
-                //'ingredient' => $row['ingredient'],
                 'instructions' => $row['instructions'],
                 'added' => $row['added']
             ));
@@ -44,7 +43,7 @@ class Recipe extends BaseModel {
             ));
             return $recipe;
         }
-        return null;
+        return null;    
     }
     
     //Tallennetaan olio tietokantaan

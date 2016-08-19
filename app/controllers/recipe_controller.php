@@ -21,11 +21,19 @@ class recipe_controller extends BaseController {
         
         $recipe = new Recipe(array(
            'name'  => $params['name'],
-            'description' => $params['description'],
+            'description' => $params['description'],            
             'instructions' => $params['instructions']
         ));
         
         $recipe->save();
+        
+        $ingredient = new Ingredient(array(
+           'name'  => $params['name']
+        ));
+        
+        $ingredient->save();
+        
+        //Tähän tulee $recipe_ingredient tauluun tarvittavat jutut....
         
         Redirect::to('/drink/' . $recipe->id, array('message' => 'Lisäys ok :)'));
     }
