@@ -20,6 +20,6 @@ name varchar(50) NOT NULL
 );
 
 CREATE TABLE Recipe_ingredient(
-recipe_id INTEGER REFERENCES Recipe(id),
-ingredient_id INTEGER REFERENCES Ingredient(id)
+recipe_id INTEGER REFERENCES Recipe(id) ON DELETE CASCADE,
+ingredient_id INTEGER REFERENCES Ingredient(id) ON DELETE CASCADE
 );

@@ -6,6 +6,7 @@ class Recipe extends BaseModel {
 
     public function __construct($attributes = null) {
         parent::__construct($attributes);
+        $this->validators = array('validate_name', 'validate_description');
     }
 
     public static function all() {
@@ -43,16 +44,16 @@ class Recipe extends BaseModel {
             ));
             return $recipe;
         }
-        return null;    
+        return null;
     }
-    
+
     //Tallennetaan olio tietokantaan
     public function save() {
         // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
-        
+
         $query = DB::connection()->prepare('INSERT INTO Recipe (name, description, instructions, added) VALUES (:name, :description, :instructions, NOW()) RETURNING id');
         $query->execute(array('name' => $this->name, 'description' => $this->description, 'instructions' => $this->instructions));
-        
+
         //haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
         $row = $query->fetch();
         //asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
