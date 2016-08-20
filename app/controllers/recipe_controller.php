@@ -34,6 +34,15 @@ class recipe_controller extends BaseController {
         $ingredient->save();
         
         //Tähän tulee $recipe_ingredient tauluun tarvittavat jutut....
+        /*
+        Kint::dump($recipe->id);
+        Kint::dump($ingredient->id);
+        */
+                
+        $recipe_ingredient = new Recipe_ingredient();
+        $recipe_ingredient->save($recipe->id, $ingredient->id);
+        
+        
         
         Redirect::to('/drink/' . $recipe->id, array('message' => 'Lisäys ok :)'));
     }
