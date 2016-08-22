@@ -18,6 +18,12 @@ Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkitten
 
 ##
 
+Käyttöohje: Sovellukseen pääsee tästä [Linkki sovellukseeni](https://jssilvo.users.cs.helsinki.fi/tsoha/)
+
+Pääsivun hakutoiminto on toistaiseksi työn alla, mutta osaan toiminnallisuuksia voi tutustua linkeistä "Drinkkilistaus" ja "lisää drinkki"
+
+Kirjautuminen on mahdollista, mutta ei tuo varsinaista lisätoiminnallisuutta vielä tässä vaiheessa.
+
 Tunnus: Heikki
 
 Salasana: 123

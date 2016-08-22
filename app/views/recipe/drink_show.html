@@ -6,7 +6,7 @@
 <h1>{{recipe.name}}</h1>
 
 <p>
-    {{forms.destroy_button(#{base_path}/drink/#{recipe.id}/destro)}}
+    {{forms.destroy_button("#{base_path}/drink/#{recipe.id}/destroy")}}
     <a href="{{base_path}}/drink/{{recipe.id}}/edit" class="btn btn-info" role="button">Muokkaa</a>
 </p>
 
