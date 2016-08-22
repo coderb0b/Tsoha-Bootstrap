@@ -1,7 +1,8 @@
 <?php
 
 $routes->get('/', function() {
-    HelloWorldController::index();
+    //HelloWorldController::index();
+    HelloWorldController::drinks_main();
 });
 
 $routes->get('/hiekkalaatikko', function() {
@@ -11,9 +12,15 @@ $routes->get('/hiekkalaatikko', function() {
 $routes->get('/main', function() {
     HelloWorldController::drinks_main();
 });
-
+// Kirjautuminen
+// Kirjautumislomakkeen esittäminen
 $routes->get('/login', function() {
-    HelloWorldController::login();
+    UserController::login();
+});
+
+//Kirjautumisen käsittely
+$routes->post('/login', function() {
+    UserController::handle_login();
 });
 
 $routes->get('/drink', function() {

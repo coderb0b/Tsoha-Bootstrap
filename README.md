@@ -15,3 +15,9 @@ Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkitten
 * [Login](https://jssilvo.users.cs.helsinki.fi/tsoha/login)
 * [Listaus](https://jssilvo.users.cs.helsinki.fi/tsoha/drink)
 * [Esittelysivu](https://jssilvo.users.cs.helsinki.fi/tsoha/drink/1)
+
+##
+
+Tunnus: Heikki
+Salasana: 123
+

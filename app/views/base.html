@@ -43,6 +43,9 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
+                        {% if user_logged_in %}
+                        <li><a>Kirjautunut käyttäjä {{user_logged_in.name}}</a></li>
+                        {% endif %}
                         <li><a href="/tsoha/drink/new">Lisää drinkki</a></li>
                         <li><a href="/tsoha/login">Kirjaudu</a></li>
                     </ul>
