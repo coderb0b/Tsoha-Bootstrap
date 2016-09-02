@@ -10,7 +10,7 @@ $routes->get('/', 'check_logged_in', function() {
 });
 
 //Haku pääsivulta
-$routes->post('/main', function() {
+$routes->post('/main', 'check_logged_in', function() {
     recipe_controller::search();
 });
 
@@ -37,14 +37,29 @@ $routes->post('/logout', function() {
     UserController::logout();
 });
 
+//reseptien listaus
 $routes->get('/drink', 'check_logged_in', function() {
     //HelloWorldController::drinks_list();
     recipe_controller::index();
 });
 
+//ainesosien listaus
+$routes->get('/ingredient', 'check_logged_in', function() {
+    ingredient_controller::index();
+});
+
+//ainesosan lisäyslomakkeen näyttäminen
+$routes->get('/ingredient/new', 'check_logged_in', function() {
+    ingredient_controller::create();
+});
+
+//ainesosan lisääminen tietokantaan
+$routes->post('/ingredient', 'check_logged_in', function() {
+    ingredient_controller::store();
+});
+
 //reseptin lisääminen tietokantaan
 $routes->post('/drink', 'check_logged_in', function() {
-    //HelloWorldController::drinks_list();
     recipe_controller::store();
 });
 

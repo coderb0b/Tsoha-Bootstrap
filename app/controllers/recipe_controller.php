@@ -15,7 +15,8 @@ class recipe_controller extends BaseController {
     }
 
     public static function create() {
-        View::make('recipe/new.html');
+        $ingredients = Ingredient::all();
+        View::make('recipe/new.html', array('ingredients' => $ingredients));
     }
 
     //Haku pääsivulta
@@ -34,26 +35,35 @@ class recipe_controller extends BaseController {
 
     public static function store() {
         $params = $_POST; //POST-pyynnön muuttujat
+        $ingredients = $params['ingredients'];
+
         $recipe_attributes = array(
             'name' => $params['name'],
             'description' => $params['description'],
             'instructions' => $params['instructions'],
-            'ingredient' => $params['ingredient']
+            //'ingredient' => $params['ingredient'],
+            'ingredients' => array()
         );
-        $ingredient_attributes = array(
-            'name' => $params['ingredient']
-        );
+        /*
+          foreach ($ingredients as $ingredient) {
+          $recipe_attributes['ingredients'][] = $ingredient;
+          }
+         */
 
+        /*
+          $ingredient_attributes = array(
+          'name' => $params['ingredient']
+          );
+         */
         $recipe = new Recipe($recipe_attributes);
-        $ingredient = new Ingredient($ingredient_attributes);
-
+        //$ingredient = new Ingredient($ingredient_attributes);
         //Validoidaan käyttäjän syötteet errors metodilla
         $recipe_errors = $recipe->errors();
-        $ingredient_errors = $ingredient->errors();
+        //$ingredient_errors = $ingredient->errors();
 
-        if (count($recipe_errors) == 0 && count($ingredient_errors) == 0) {
+        if (count($recipe_errors) == 0) {
             $recipe->save();
-            $ingredient->save();
+            //$ingredient->save();
             /*
               $ingredient = new Ingredient(array(
               'name' => $params['ingredient']
@@ -67,13 +77,16 @@ class recipe_controller extends BaseController {
               Kint::dump($ingredient->id);
              */
 
-            $recipe_ingredient = new Recipe_ingredient();
-            $recipe_ingredient->save($recipe->id, $ingredient->id);
+            foreach ($ingredients as $ingredient) {
+
+                $recipe_ingredient = new Recipe_ingredient();
+                $recipe_ingredient->save($recipe->id, $ingredient);
+            }
+
 
 
             Redirect::to('/drink/' . $recipe->id, array('message' => 'Lisäys ok :)'));
         } else {
-            //Tähän pitää lisätä $ingredient_errors mukaan..
             View::make('recipe/new.html', array('errors' => $recipe_errors, 'attributes' => $recipe_attributes));
         }
     }

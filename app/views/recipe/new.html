@@ -25,8 +25,14 @@
 
     <div class="form-group">
         <label>Ainesosat</label>
-        <input name="ingredient" class="form-control" value="{{attributes.ingredient}}" type="text">
+        <select class="form-control" name="ingredients[]" multiple="">
+            {% for ingredient in ingredients %}
+            <option value="{{ingredient.id}}">{{ingredient.name}}</option>
+            {% endfor %}
+        </select>
     </div>
+    
+    <p><a href="/tsoha/ingredient/new">Liää ainesosa</a></p>
 
     <div class="form-group">
         <label>Ohjeet</label>
