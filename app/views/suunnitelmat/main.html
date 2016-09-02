@@ -6,12 +6,16 @@
 
 <h1>Drinkkiarkisto</h1>
 <!--Hakukenttä ja nappi -->
-<div class="form-group">
-    <label>Hae drinkkejä</label>
-    <input class="form-control" type="text">
-</div>
 
-<button type="submit" class="btn-primary">Hae</button>
+
+<form method="post" action="{{base_path}}/main">
+    <div class="form-group">
+        <label>Hae drinkkejä nimellä</label>
+        <input name="name" class="form-control" type="text">    
+
+    </div>
+    <input type="submit">
+</form>
 
 
 

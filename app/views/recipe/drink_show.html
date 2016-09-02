@@ -16,6 +16,10 @@
     <h3>Resepti</h3>
     {{recipe.instructions}}
     
+    <h3>Ainesosat</h3>
+    {% for ingredient in ingredients %}
+    {{ingredient.name}}
+    {% endfor %}
     
     <div class="alert alert-success">
         {{message}}

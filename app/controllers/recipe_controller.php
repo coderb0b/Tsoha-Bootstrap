@@ -9,12 +9,27 @@ class recipe_controller extends BaseController {
 
     public static function drinks_show($id) {
         $recipe = Recipe::find($id);
+        $ingredients = Ingredient::find($id);
         //renderöidään drink_show.html muuttujalla $recipe
-        View::make('recipe/drink_show.html', array('recipe' => $recipe));
+        View::make('recipe/drink_show.html', array('recipe' => $recipe, 'ingredients' => $ingredients));
     }
 
     public static function create() {
         View::make('recipe/new.html');
+    }
+
+    //Haku pääsivulta
+    public static function search() {
+        $params = $_POST; //POST-pyynön muuttujat
+        /*     $search_attributes = array(
+          'name' => $params['name']
+          );
+         */
+
+        $search_value = $params['name'];
+
+        $recipes = Recipe::search($search_value);
+        View::make('recipe/index.html', array('recipes' => $recipes));
     }
 
     public static function store() {
@@ -22,7 +37,8 @@ class recipe_controller extends BaseController {
         $recipe_attributes = array(
             'name' => $params['name'],
             'description' => $params['description'],
-            'instructions' => $params['instructions']
+            'instructions' => $params['instructions'],
+            'ingredient' => $params['ingredient']
         );
         $ingredient_attributes = array(
             'name' => $params['ingredient']
@@ -76,11 +92,13 @@ class recipe_controller extends BaseController {
             'id' => $id,
             'name' => $params['name'],
             'description' => $params['description'],
-            'instructions' => $params['instructions']
+            'instructions' => $params['instructions'],
         );
 
         //Alustetaan Recipe-olio uusilla tiedoilla
         $recipe = new Recipe($recipe_attributes);
+        //Kint::dump($recipe);
+        //die();
         $recipe_errors = $recipe->errors();
 
         if (count($recipe_errors) > 0) {
@@ -101,7 +119,5 @@ class recipe_controller extends BaseController {
 
         Redirect::to('/drink', array('message' => 'Poisto ok.'));
     }
-    
-    
 
 }

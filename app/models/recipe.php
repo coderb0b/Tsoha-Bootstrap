@@ -47,6 +47,32 @@ class Recipe extends BaseModel {
         return null;
     }
 
+    //Haku
+    public static function search($name) {
+        $query = DB::connection()->prepare("SELECT * FROM Recipe WHERE name LIKE '%".$name."%' ");
+        
+
+        //Kint::dump($name);
+        //Kint::dump($query);
+        //die();
+        
+        //$query->execute(array('name' => $name));
+        $query->execute();
+        $rows = $query->fetchAll();
+        $recipes = array();
+
+        foreach ($rows as $row) {
+            $recipes[] = new Recipe(array(
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'description' => $row['description'],
+                'instructions' => $row['instructions'],
+                'added' => $row['added']
+            ));
+        }
+        return $recipes;
+    }
+
     //Tallennetaan olio tietokantaan
     public function save() {
         // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
@@ -64,7 +90,7 @@ class Recipe extends BaseModel {
         $query = DB::connection()->prepare('UPDATE Recipe SET name=:name, description=:description, instructions=:instructions WHERE id = :id');
         $query->execute(array('name' => $this->name, 'description' => $this->description, 'instructions' => $this->instructions, 'id' => $id));
     }
-    
+
     public function destroy($id) {
         $query = DB::connection()->prepare('DELETE FROM Recipe WHERE id = :id');
         $query->execute(array('id' => $id));
