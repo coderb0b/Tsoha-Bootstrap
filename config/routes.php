@@ -87,4 +87,8 @@ $routes->post('/drink/:id/destroy', 'check_logged_in', function($id) {
     recipe_controller::destroy($id);
 });
 
+//reseptin listaus ainesosan perusteella
+$routes->get('/ingredient/:id', 'check_logged_in', function($id) {
+    ingredient_controller::drinks_list($id);
+});
 

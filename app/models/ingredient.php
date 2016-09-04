@@ -45,6 +45,25 @@ class Ingredient extends BaseModel {
         }
         return $ingredients;
     }
+    
+    //Haetaan kaikki ainesosaan liittyvät reseptit $id on ainesosan id.
+    public static function findByIngredient($id) {
+        $query = DB::connection()->prepare('SELECT recipe.name AS recipe, recipe.id AS id, ingredient.name AS ingredient FROM recipe, recipe_ingredient, ingredient WHERE recipe.id = recipe_ingredient.recipe_id AND recipe_ingredient.ingredient_id = ingredient.id AND ingredient.id = :id');
+        $query->execute(array('id' => $id));
+        $rows = $query->fetchAll();
+
+        
+        $recipes = array();
+
+        foreach ($rows as $row) {
+            $recipes[] = new Recipe(array(
+                'id' => $row['id'],
+                'name' => $row['recipe']
+            ));
+        }
+        
+        return $recipes;
+    }
 
     public function save() {
         // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon

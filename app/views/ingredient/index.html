@@ -19,7 +19,7 @@
     <tbody>
         {% for ingredient in ingredients %}
         <tr>
-            <td>{{ingredient.name}}</td>
+            <td><a href="{{base_path}}/ingredient/{{ingredient.id}}">{{ingredient.name}}</td>
         </tr>
         {% endfor %}   
         

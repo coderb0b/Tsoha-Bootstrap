@@ -10,6 +10,12 @@ class ingredient_controller extends BaseController {
     public static function create() {
         View::make('ingredient/new.html');
     }
+    
+    public static function drinks_list($id) {
+        
+        $recipes = Ingredient::findByIngredient($id);
+        View::make('recipe/index.html', array('recipes' => $recipes));
+    }
 
     public static function store() {
         $params = $_POST;
