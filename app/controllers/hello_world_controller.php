@@ -27,7 +27,7 @@ class HelloWorldController extends BaseController {
     }
 
     public static function drinks_main() {
-        View::make('suunnitelmat/main.html');
+        View::make('main.html');
     }
 
     public static function login() {

@@ -4,8 +4,7 @@ function check_logged_in() {
     BaseController::check_logged_in();
 }
 
-$routes->get('/', 'check_logged_in', function() {
-    //HelloWorldController::index();
+$routes->get('/', 'check_logged_in', function() {    
     HelloWorldController::drinks_main();
 });
 
